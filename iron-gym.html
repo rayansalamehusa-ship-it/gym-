@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>نادي الحديد</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0f12;--card:#17191f;--card2:#20232b;--tx:#f3f4f6;--mut:#a3a9b6;--acc:#c6f432;--acc-tx:#12160a;--ok:#34d399;--warn:#fbbf24;--bad:#f87171;--line:#2b2e38;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0f12}}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f5f7;--card:#fff;--card2:#eceef2;--tx:#14161b;--mut:#566070;--acc:#3f6212;--acc-tx:#fff;--ok:#047857;--warn:#a16207;--bad:#b91c1c;--line:#d9dce3;color-scheme:light}}
+:root[data-theme="dark"]{--bg:#0e0f12}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:Cairo,system-ui,sans-serif;font-size:16px;line-height:1.5}
+body{min-height:100vh;padding-bottom:96px}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:0}h2{font-size:18px;margin:20px 0 10px}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px}
+.logo i{width:38px;height:38px;border-radius:10px;background:var(--acc);color:var(--acc-tx);display:grid;place-items:center}
+.sub{color:var(--mut);font-size:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.stat b{display:block;font-size:30px;font-weight:800;line-height:1.2}
+.stat span{color:var(--mut);font-size:14px}
+.row{display:flex;align-items:center;gap:10px}.sp{flex:1}
+.list{display:grid;gap:10px}
+.chip{display:inline-block;padding:2px 10px;border-radius:99px;font-size:13px;font-weight:600;border:1.5px solid currentColor}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+button,input,select{font:inherit;color:inherit}
+.btn{min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--line);background:var(--card2);cursor:pointer;font-weight:600;transition:transform .15s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn.p{background:var(--acc);color:var(--acc-tx);border-color:transparent}
+.btn.d{color:var(--bad)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none}
+.tabs .btn{white-space:nowrap;flex:none}
+.tabs .on{background:var(--acc);color:var(--acc-tx);border-color:transparent}
+input,select{width:100%;min-height:46px;border-radius:12px;border:1px solid var(--line);background:var(--card2);padding:0 12px}
+label{display:block;font-size:14px;font-weight:600;margin:12px 0 4px}
+.err{color:var(--bad);font-size:14px;min-height:20px}
+.bar{height:10px;background:var(--card2);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--acc);border-radius:9px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.chk{width:100%;text-align:right;display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 12px;background:var(--card);border:1px solid var(--line);border-radius:14px;cursor:pointer}
+.chk .bx{width:28px;height:28px;border-radius:8px;border:2px solid var(--mut);display:grid;place-items:center;flex:none;color:transparent;transition:all .2s}
+.chk[aria-pressed=true] .bx{background:var(--acc);border-color:var(--acc);color:var(--acc-tx)}
+.chk[aria-pressed=true] .t{text-decoration:line-through;color:var(--mut)}
+nav{position:fixed;inset:auto 0 0 0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:center;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;max-width:150px;min-height:56px;background:none;border:0;color:var(--mut);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:13px;font-weight:600;cursor:pointer;border-radius:12px}
+nav button[aria-current=page]{color:var(--acc)}
+nav[hidden],[hidden]{display:none!important}
+nav svg,.ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+dialog{border:1px solid var(--line);border-radius:20px;background:var(--card);color:var(--tx);width:min(92vw,440px);padding:20px}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+.ring{position:relative;width:132px;height:132px;flex:none}.ring b{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-size:22px;line-height:1.1}
+.mac{display:grid;gap:8px;flex:1}.mac div{font-size:13px;color:var(--mut)}
+textarea{width:100%;min-height:80px;border-radius:12px;border:1px solid var(--line);background:var(--card2);padding:10px 12px;font:inherit;color:inherit;resize:vertical}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--card2);padding:4px;border-radius:14px}.seg .btn{border:0;background:none}.seg .on{background:var(--acc);color:var(--acc-tx)}
+.bars{display:flex;align-items:flex-end;gap:8px;height:90px}.bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:11px;color:var(--mut)}.bars i{display:block;width:100%;background:var(--acc);border-radius:6px 6px 0 0;min-height:3px}
+.badge{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:var(--card);border:1px solid var(--line)}.badge.off{opacity:.55}
+.big{font-size:44px;font-weight:800;line-height:1}
+#toast{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:var(--acc);color:var(--acc-tx);padding:10px 18px;border-radius:12px;font-weight:700;z-index:9;opacity:0;pointer-events:none;transition:opacity .25s}#toast.show{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@keyframes up{from{opacity:0;transform:translateY(10px)}}
+#view>*{animation:up .3s ease both}
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <div class="logo"><i aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg></i>نادي الحديد</div>
+    <div class="row"><div class="sub" id="date"></div><button class="btn" id="out" hidden>خروج</button></div>
+  </div>
+  <div id="view"></div>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+<nav id="nav" aria-label="التنقل الرئيسي"></nav>
+
+<dialog id="dlg" aria-labelledby="dt">
+  <h1 id="dt">عضو جديد</h1>
+  <label for="fn">الاسم</label><input id="fn" autocomplete="off">
+  <label for="fp">رقم الهاتف</label><input id="fp" inputmode="tel" dir="ltr" style="text-align:right">
+  <label for="fl">الاشتراك</label><select id="fl"></select>
+  <div class="err" id="fe" role="alert"></div>
+  <div class="row" style="margin-top:8px"><button class="btn p sp" id="save">حفظ وتسجيل الدفعة</button><button class="btn" id="cancel">إلغاء</button></div>
+</dialog>
+
+<dialog id="dlg2" aria-labelledby="ct"><h1 id="ct">نظام غذائي مخصّص</h1><div class="sub" id="cwho"></div><div class="cbody"></div></dialog>
+<script>
+const CUR='$';
+const PL0={m:{n:'شهري',d:30,p:100},q:{n:'3 أشهر',d:90,p:270},y:{n:'سنوي',d:365,p:960}};
+const DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+const WK=[
+ ['ظهر وبايسبس',[['سحب علوي (Lat Pulldown)','4×10'],['تجديف بالبار','4×8'],['سحب أرضي','3×12'],['بايسبس بار EZ','3×10'],['مطرقة (Hammer)','3×12']]],
+ ['أرجل',[['سكوات','5×6'],['ضغط أرجل','4×12'],['رومانيان ديدلفت','4×8'],['خلفية أرجل','3×12'],['سمانة واقف','4×15']]],
+ ['كارديو وبطن',[['جري متقطع','20 د'],['بلانك','3×60 ث'],['رفع أرجل معلق','3×12'],['كرانش كابل','3×15'],['تمدد 10 دقائق','10 د']]],
+ ['أكتاف',[['ضغط أكتاف دمبل','4×10'],['رفرفة جانبية','4×15'],['رفرفة خلفية','3×15'],['أرنولد برس','3×10'],['شراغز','4×12']]],
+ ['جسم كامل HIIT',[['ديدلفت','4×5'],['بربي','4×10'],['كيتل بيل سوينغ','4×15'],['سحب بار ثابت','3×max'],['حبل نط','5 د']]],
+ ['راحة نشطة',[['مشي 30 دقيقة','30 د'],['تمدد ومرونة','15 د'],['نوم 8 ساعات','—']]],
+ ['صدر وترايسبس',[['بنش برس','5×5'],['بنش مائل دمبل','4×10'],['فلاي كابل','3×12'],['ترايسبس بوش داون','4×12'],['ديبس','3×max']]]];
+const NU={
+ b:{n:'تضخيم',k:3200,P:200,C:400,F:90,m:[['7:00','5 بيضات + شوفان + موز',700],['10:00','ساندويش دجاج وخبز أسمر',650],['13:30','أرز + لحم + سلطة',850],['17:00','زبادي يوناني + مكسرات',450],['21:00','سلمون + بطاطا مشوية',550]]},
+ c:{n:'تنشيف',k:1900,P:170,C:150,F:55,m:[['7:30','3 بيضات + خبز توست أسمر',400],['11:00','تونة + خيار وسلطة',280],['14:00','صدر دجاج + أرز بسمتي + خضار',500],['17:30','بروتين شيك + تفاحة',300],['20:30','سمك مشوي + بروكلي',420]]},
+ f:{n:'لياقة',k:2400,P:150,C:260,F:70,m:[['7:30','شوفان + حليب + فواكه',500],['11:00','حفنة مكسرات + موزة',300],['14:00','دجاج + أرز + سلطة',700],['17:30','زبادي + عسل',250],['20:30','عدس + بيض مسلوق',650]]}};
+
+
+const $=s=>document.querySelector(s);
+const iso=d=>{const z=new Date(d.getTime()-d.getTimezoneOffset()*6e4);return z.toISOString().slice(0,10)};
+const today=()=>iso(new Date());
+const addDays=(s,n)=>{const d=new Date(s+'T00:00:00');d.setDate(d.getDate()+n);return iso(d)};
+const diff=s=>Math.round((new Date(s+'T00:00:00')-new Date(today()+'T00:00:00'))/864e5);
+const KEY='irongym.v2';
+function seed(){const t=today(),mk=(i,n,p,pl,e,nu,att)=>({id:i,name:n,phone:p,plan:pl,end:addDays(t,e),pin:p.slice(-4),nu,att:att.map(x=>addDays(t,-x)),wt:[{d:addDays(t,-14),v:82},{d:addDays(t,-7),v:81.2}],ck:{}});
+ return{plans:JSON.parse(JSON.stringify(PL0)),adminPin:'1234',
+ members:[mk(1,'أحمد الخطيب','0501234567','m',25,'b',[1,2,3,5]),mk(2,'سارة المصري','0507654321','q',4,'c',[0,2]),mk(3,'خالد العلي','0551112233','m',-3,'f',[6,8]),mk(4,'ليلى حسن','0569998877','y',200,'c',[1,3,4,5,6,7,9]),mk(5,'عمر ناصر','0543332211','m',-20,'b',[]),mk(6,'نور الدين','0521230987','q',12,'f',[2])],
+ pay:[{d:t,a:100},{d:addDays(t,-2),a:270},{d:addDays(t,-3),a:100},{d:addDays(t,-6),a:960}],
+ ann:[{id:1,d:t,txt:'غداً يفتح النادي الساعة 6 صباحاً. حصة كارديو جماعي مجانية للجميع!'}],
+ session:null,tab:'home',filter:'all',q:'',day:new Date().getDay(),nid:7,aid:2}}
+let S;try{S=JSON.parse(localStorage.getItem(KEY))||seed()}catch(e){S=seed()}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const status=m=>{const d=diff(m.end);return d<0?['منتهي','bad',d]:d<=7?['ينتهي قريباً','warn',d]:['فعال','ok',d]};
+const isAdmin=()=>S.session&&S.session.role==='admin';
+const me=()=>S.members.find(m=>m.id===(S.session&&S.session.id));
+const toast=t=>{const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.remove('show'),2200)};
+const check=`<span class="bx" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px;stroke-width:3"><path d="M5 12l5 5 9-10"/></svg></span>`;
+const doneKey=(t,i)=>t+':'+i;
+const isDone=k=>((me()||{ck:{}}).ck[today()]||[]).includes(k);
+const toggle=k=>{const m=me(),a=m.ck[today()]=m.ck[today()]||[];const i=a.indexOf(k);i<0?a.push(k):a.splice(i,1)};
+const streak=m=>{let n=0,d=m.att.includes(today())?today():addDays(today(),-1);while(m.att.includes(d)){n++;d=addDays(d,-1)}return n};
+const monthAtt=m=>m.att.filter(d=>d.startsWith(today().slice(0,7))).length;
+const checkIn=m=>{if(status(m)[1]==='bad'){toast('الاشتراك منتهي — يلزم التجديد أولاً');return false}if(m.att.includes(today())){toast('الحضور مسجّل مسبقاً اليوم');return false}m.att.push(today());toast('تم تسجيل الحضور ✔');return true};
+function pay(m,pl){const p=S.plans[pl];const base=diff(m.end)>0?m.end:today();m.plan=pl;m.end=addDays(base,p.d);S.pay.push({d:today(),a:p.p})}
+
+const ICONS={home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',members:'<circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M17 4a4 4 0 0 1 0 8M22 21a7 7 0 0 0-4-6"/>',work:'<path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/>',food:'<path d="M4 3v8a3 3 0 0 0 3 3v7M10 3v8a3 3 0 0 1-3 3M7 3v5M18 21V3c-3 2-4 6-4 9h4"/>',bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8M10 21a2 2 0 0 0 4 0"/>',gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',chart:'<path d="M3 3v18h18M7 15l4-4 3 3 5-6"/>'};
+const ATABS=[['home','الرئيسية'],['members','الأعضاء'],['ann','الإعلانات'],['set','الإعدادات']];
+const PTABS=[['me','حسابي'],['work','التمارين'],['food','التغذية'],['prog','تقدّمي']];
+const ICK={home:'home',members:'members',ann:'bell',set:'gear',me:'user',work:'work',food:'food',prog:'chart'};
+function renderNav(){const T=!S.session?[]:isAdmin()?ATABS:PTABS;$('#nav').hidden=!T.length;$('#nav').innerHTML=T.map(([k,l])=>`<button data-tab="${k}" ${S.tab===k?'aria-current="page"':''}><svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${ICONS[ICK[k]]}</svg>${l}</button>`).join('')}
+
+/* ---------- login ---------- */
+let LR='player';
+function login(){return`<div class="card" style="margin-top:20px"><h1>تسجيل الدخول</h1><p class="sub">اختر نوع الحساب</p>
+ <div class="seg" role="group" aria-label="نوع الحساب"><button class="btn ${LR==='player'?'on':''}" data-role="player">لاعب</button><button class="btn ${LR==='admin'?'on':''}" data-role="admin">مدير</button></div>
+ ${LR==='player'?'<label for="lp">رقم الهاتف</label><input id="lp" inputmode="tel" dir="ltr" style="text-align:right" autocomplete="off">':''}
+ <label for="lc">الرمز السري (PIN)</label><input id="lc" type="password" inputmode="numeric" maxlength="8" autocomplete="off">
+ <div class="err" id="le" role="alert"></div>
+ <button class="btn p" style="width:100%" data-login>دخول</button>
+ <p class="sub" style="margin-top:14px">تجربة: المدير 1234 · لاعب 0501234567 والرمز 4567 (آخر 4 أرقام من الهاتف)</p></div>`}
+
+/* ---------- admin ---------- */
+function memberCard(m){const [l,c,d]=status(m);const p=S.plans[m.plan];
+ return`<article class="card"><div class="row"><div class="sp"><b>${esc(m.name)}</b><div class="sub"><a href="tel:${esc(m.phone)}" style="color:inherit">${esc(m.phone)}</a> · ${p.n}</div></div><span class="chip ${c}">${l}</span></div>
+ <div class="sub" style="margin:6px 0">${d<0?`انتهى منذ ${-d} يوم`:d===0?'ينتهي اليوم':`متبقي ${d} يوم`} · ${m.end}<br>حضور الشهر: ${monthAtt(m)} يوم · رمز الدخول: <span dir="ltr">${esc(m.pin)}</span></div>
+ <label for="nu${m.id}" class="sub" style="margin:4px 0">النظام الغذائي ${m.cn?'(المخصّص مفعّل)':''}</label><select id="nu${m.id}" data-nuset="${m.id}">${Object.entries(NU).map(([k,v])=>`<option value="${k}" ${m.nu===k?'selected':''}>${v.n}</option>`).join('')}</select>
+ <button class="btn" style="width:100%;margin-top:8px" data-ced="${m.id}">${m.cn?'تعديل النظام المخصّص ✎':'+ نظام غذائي مخصّص'}</button>
+ <div class="row" style="margin-top:10px"><button class="btn p sp" data-renew="${m.id}">تجديد ${p.n} (${p.p}${CUR})</button><button class="btn" data-att="${m.id}">حضور</button><button class="btn d" data-del="${m.id}">حذف</button></div></article>`}
+function home(){
+ const st=S.members.map(status),c=k=>st.filter(x=>x[1]===k).length;
+ const mo=today().slice(0,7),rev=S.pay.filter(p=>p.d.startsWith(mo)).reduce((a,p)=>a+p.a,0),here=S.members.filter(m=>m.att.includes(today())).length;
+ const wk=[6,5,4,3,2,1,0].map(i=>{const d=addDays(today(),-i);return[DAYS[new Date(d+'T00:00:00').getDay()].slice(0,3),S.pay.filter(p=>p.d===d).reduce((a,p)=>a+p.a,0)]}),mx=Math.max(1,...wk.map(x=>x[1]));
+ const need=S.members.filter(m=>status(m)[1]!=='ok').sort((a,b)=>diff(a.end)-diff(b.end));
+ return`<div class="grid">
+ <div class="card stat"><b class="ok">${c('ok')}</b><span>اشتراك فعّال</span></div><div class="card stat"><b class="warn">${c('warn')}</b><span>ينتهي خلال 7 أيام</span></div>
+ <div class="card stat"><b class="bad">${c('bad')}</b><span>اشتراك منتهي</span></div><div class="card stat"><b>${here}</b><span>حاضرون اليوم</span></div></div>
+ <div class="card stat" style="margin-top:10px"><b>${rev}${CUR}</b><span>إيراد هذا الشهر</span><div class="bars" style="margin-top:12px" role="img" aria-label="إيراد آخر 7 أيام">${wk.map(([l,v])=>`<div><span>${v||''}</span><i style="height:${v/mx*70}%"></i>${l}</div>`).join('')}</div></div>
+ <h2>يحتاجون تجديد</h2><div class="list">${need.length?need.map(memberCard).join(''):'<div class="card sub">كل الاشتراكات سارية</div>'}</div>`}
+function members(){
+ const q=S.q.trim(),f=S.filter,arr=S.members.filter(m=>(!q||m.name.includes(q)||m.phone.includes(q))&&(f==='all'||status(m)[1]===f)).sort((a,b)=>diff(a.end)-diff(b.end));
+ const fl=[['all','الكل'],['ok','فعّال'],['warn','قريباً'],['bad','منتهي']];
+ return`<div class="row"><h2 class="sp" style="margin:0">الأعضاء (${S.members.length})</h2><button class="btn p" data-add>+ عضو جديد</button></div>
+ <label for="sq" class="sub" style="margin-top:12px">بحث بالاسم أو الهاتف</label><input id="sq" value="${esc(S.q)}" autocomplete="off">
+ <div class="tabs" style="margin-top:10px">${fl.map(([k,l])=>`<button class="btn ${f===k?'on':''}" data-f="${k}">${l}</button>`).join('')}</div>
+ <div class="list">${arr.map(memberCard).join('')||'<div class="card sub">لا توجد نتائج</div>'}</div>`}
+function annList(del){return S.ann.length?S.ann.slice().reverse().map(a=>`<div class="card"><div class="sub">${a.d}</div><div>${esc(a.txt)}</div>${del?`<button class="btn d" style="margin-top:8px" data-adel="${a.id}">حذف</button>`:''}</div>`).join(''):'<div class="card sub">لا توجد إعلانات</div>'}
+function ann(){return`<h2 style="margin-top:4px">إعلان جديد للّاعبين</h2><label for="at" class="sub">نص الإعلان</label><textarea id="at" maxlength="240"></textarea><button class="btn p" style="width:100%;margin-top:8px" data-apost>نشر الإعلان</button><h2>الإعلانات المنشورة</h2><div class="list">${annList(true)}</div>`}
+function settings(){return`<h2 style="margin-top:4px">أسعار الاشتراكات (${CUR})</h2><div class="card">${Object.entries(S.plans).map(([k,p])=>`<label for="pr${k}">${p.n} (${p.d} يوم)</label><input id="pr${k}" type="number" min="1" inputmode="numeric" value="${p.p}">`).join('')}<button class="btn p" style="width:100%;margin-top:12px" data-saveplans>حفظ الأسعار</button></div>
+ <h2>رمز المدير</h2><div class="card"><label for="np">رمز جديد (4 أرقام على الأقل)</label><input id="np" type="password" inputmode="numeric" maxlength="8"><button class="btn p" style="width:100%;margin-top:12px" data-savepin>تغيير الرمز</button></div>
+ <p style="text-align:center;margin-top:24px"><button class="btn" data-reset>إعادة بيانات العرض التجريبي</button></p>`}
+
+/* ---------- player ---------- */
+function meView(){const m=me(),[l,c,d]=status(m),p=S.plans[m.plan],tot=p.d,pct=Math.max(0,Math.min(1,d/tot)),R=2*Math.PI*54,done=m.att.includes(today());
+ return`<h2 style="margin-top:4px">أهلاً ${esc(m.name.split(' ')[0])} 👋</h2>
+ <div class="card row" style="gap:16px"><div class="ring"><svg viewBox="0 0 132 132" width="132" height="132" aria-hidden="true"><circle cx="66" cy="66" r="54" fill="none" stroke="var(--card2)" stroke-width="12"/><circle cx="66" cy="66" r="54" fill="none" stroke="var(--acc)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${R}" stroke-dashoffset="${R*(1-pct)}" transform="rotate(-90 66 66)"/></svg><b>${Math.max(0,d)}<span class="sub" style="font-size:12px;display:block">يوم متبقٍ</span></b></div>
+ <div class="sp"><span class="chip ${c}">${l}</span><div style="margin-top:8px"><b>${p.n}</b></div><div class="sub">ينتهي ${m.end}</div></div></div>
+ ${c!=='ok'?`<div class="card ${c}" style="margin-top:10px;border-color:currentColor"><b>${c==='bad'?'اشتراكك منتهي. راجع إدارة النادي للتجديد.':'اشتراكك على وشك الانتهاء، جدّده قريباً.'}</b></div>`:''}
+ <div class="grid" style="margin-top:10px"><div class="card stat"><b>${streak(m)}</b><span>أيام متواصلة</span></div><div class="card stat"><b>${monthAtt(m)}</b><span>حضور هذا الشهر</span></div></div>
+ <button class="btn p" style="width:100%;margin-top:10px" data-me-in ${done?'disabled':''}>${done?'تم تسجيل حضورك اليوم ✔':'سجّل حضوري الآن'}</button>
+ <h2>إعلانات النادي</h2><div class="list">${annList(false)}</div>`}
+function prog(){const m=me(),w=m.wt.slice().sort((a,b)=>a.d.localeCompare(b.d)),vs=w.map(x=>x.v),lo=Math.min(...vs,1e9),hi=Math.max(...vs,0),rg=Math.max(1,hi-lo);
+ const pts=w.map((x,i)=>`${w.length>1?10+i*280/(w.length-1):150},${70-(x.v-lo)/rg*55}`).join(' ');
+ const allEx=Object.values(m.ck).some(a=>a.filter(k=>k[0]==='w').length>=3);
+ const B=[['أول حضور',m.att.length>=1],['3 أيام متواصلة',streak(m)>=3||m.att.length>=6],['أسبوع متواصل',streak(m)>=7],['ملتزم: 12 حضوراً',m.att.length>=12],['أنهيت تمريناً كاملاً',allEx],['خسرت 1 كغ أو أكثر',w.length>1&&w[0].v-w[w.length-1].v>=1]];
+ return`<h2 style="margin-top:4px">وزني</h2><div class="card"><div class="row"><div class="sp"><label for="wv" style="margin:0">الوزن اليوم (كغ)</label><input id="wv" type="number" step="0.1" min="20" max="300" inputmode="decimal"></div><button class="btn p" style="align-self:flex-end" data-wadd>إضافة</button></div><div class="err" id="we" role="alert"></div>
+ ${w.length?`<svg viewBox="0 0 300 80" style="width:100%;margin-top:8px" role="img" aria-label="تغير الوزن"><polyline points="${pts}" fill="none" stroke="var(--acc)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg><div class="sub">آخر قياس: <b>${vs[vs.length-1]} كغ</b> (${w[w.length-1].d})</div>`:''}</div>
+ <h2>إنجازاتي</h2><div class="list">${B.map(([n,o])=>`<div class="badge ${o?'':'off'}"><span class="chip ${o?'ok':''}" style="${o?'':'color:var(--mut)'}">${o?'مُنجَز':'مقفل'}</span><b>${n}</b></div>`).join('')}</div>`}
+function work(){
+ const d=S.day,w=WK[d],n=w[1].length,dn=w[1].filter((_,i)=>isDone(doneKey('w'+d,i))).length;
+ return`<h2 style="margin-top:4px">البرنامج الأسبوعي</h2><div class="tabs">${[6,0,1,2,3,4,5].map(i=>`<button class="btn ${d===i?'on':''}" data-day="${i}">${DAYS[i]}${i===new Date().getDay()?' •':''}</button>`).join('')}</div>
+ <div class="card" style="margin-bottom:10px"><div class="row"><b class="sp">${w[0]}</b><span class="sub">${dn}/${n}</span></div><div class="bar" style="margin-top:8px"><i style="width:${dn/n*100}%"></i></div>${dn===n?'<div class="ok" style="margin-top:8px;font-weight:800">أحسنت! أنهيت تمرين اليوم</div>':''}</div>
+ <div class="list">${w[1].map((e,i)=>{const on=isDone(doneKey('w'+d,i));return`<button class="chk" aria-pressed="${on}" data-ex="${i}">${check}<span class="t sp"><b>${e[0]}</b></span><span class="chip" style="color:var(--mut)">${e[1]}</span></button>`}).join('')}</div>`}
+function food(){const m=me(),k=m.cn?'x':m.nu,p=m.cn||NU[m.nu],eaten=p.m.reduce((a,x,i)=>a+(isDone(doneKey('n'+k,i))?x[2]:0),0),pct=Math.min(1,eaten/p.k),C=2*Math.PI*54;
+ return`<h2 style="margin-top:4px">نظامك الغذائي: ${m.cn?'مخصّص لك':p.n}</h2><p class="sub">${m.cn?'صمّمه لك المدرّب حسب طلبك.':'حدّده لك المدرّب.'} للتغيير راجع إدارة النادي.</p>
+ <div class="card row" style="gap:16px"><div class="ring"><svg viewBox="0 0 132 132" width="132" height="132" aria-hidden="true"><circle cx="66" cy="66" r="54" fill="none" stroke="var(--card2)" stroke-width="12"/><circle cx="66" cy="66" r="54" fill="none" stroke="var(--acc)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct)}" transform="rotate(-90 66 66)" style="transition:stroke-dashoffset .6s"/></svg><b>${eaten}<span class="sub" style="font-size:12px;display:block">من ${p.k} سعرة</span></b></div>
+ <div class="mac">${[['بروتين',p.P],['كربوهيدرات',p.C],['دهون',p.F]].map(x=>`<div>${x[0]}: ${x[1]} غ<div class="bar" style="margin-top:3px"><i style="width:${Math.min(100,x[1]/2.5)}%"></i></div></div>`).join('')}</div></div>
+ <h2>وجبات اليوم</h2><div class="list">${p.m.map((x,i)=>{const on=isDone(doneKey('n'+k,i));return`<button class="chk" aria-pressed="${on}" data-meal="${i}">${check}<span class="t sp"><b>${x[1]}</b><div class="sub">${x[0]}</div></span><span class="chip" style="color:var(--mut)">${x[2]} سعرة</span></button>`}).join('')}</div>`}
+
+function render(){
+ $('#date').textContent=DAYS[new Date().getDay()]+' · '+today();
+ $('#out').hidden=!S.session;
+ renderNav();
+ const focus=document.activeElement&&document.activeElement.id==='sq';
+ const V=!S.session?login:isAdmin()?{home,members,ann,set:settings}[S.tab]:{me:meView,work,food,prog}[S.tab];
+ $('#view').innerHTML=(V||(isAdmin()?home:meView))();
+ if(focus){const i=$('#sq');i.focus();i.setSelectionRange(i.value.length,i.value.length)}
+ save();
+}
+let E=null;
+const edRead=()=>{E.k=+$('#ck').value||0;E.P=+$('#cP').value||0;E.C=+$('#cC').value||0;E.F=+$('#cF').value||0;E.m=[...document.querySelectorAll('#cm .mrow')].map(r=>[r.querySelector('.mt').value,r.querySelector('.mx').value,+r.querySelector('.mk').value||0])};
+const edDraw=(err)=>{const sum=E.m.reduce((a,x)=>a+x[2],0);$('#dlg2 .cbody').innerHTML=`
+ <div class="grid"><div><label for="ck">السعرات المستهدفة</label><input id="ck" type="number" min="800" inputmode="numeric" value="${E.k}"></div><div><label for="cP">بروتين (غ)</label><input id="cP" type="number" min="0" inputmode="numeric" value="${E.P}"></div><div><label for="cC">كربوهيدرات (غ)</label><input id="cC" type="number" min="0" inputmode="numeric" value="${E.C}"></div><div><label for="cF">دهون (غ)</label><input id="cF" type="number" min="0" inputmode="numeric" value="${E.F}"></div></div>
+ <h2 style="font-size:16px">الوجبات <span class="sub">(المجموع ${sum} سعرة)</span></h2><div id="cm" class="list">${E.m.map((x,i)=>`<div class="mrow" style="display:grid;grid-template-columns:72px 1fr 74px 44px;gap:6px;align-items:center"><input class="mt" aria-label="وقت الوجبة ${i+1}" value="${esc(x[0])}" placeholder="7:00" dir="ltr"><input class="mx" aria-label="وصف الوجبة ${i+1}" value="${esc(x[1])}" placeholder="مثال: أرز + دجاج"><input class="mk" type="number" min="0" aria-label="سعرات الوجبة ${i+1}" value="${x[2]}"><button class="btn d" style="padding:0" aria-label="حذف الوجبة ${i+1}" data-crm="${i}">✕</button></div>`).join('')}</div>
+ <button class="btn" style="width:100%;margin-top:8px" data-crow>+ إضافة وجبة</button><div class="err" role="alert">${err||''}</div>
+ <div class="row"><button class="btn p sp" data-csave>حفظ للاعب</button><button class="btn" data-cclose>إلغاء</button></div>
+ ${S.members.find(m=>m.id===E.id).cn?'<button class="btn d" style="width:100%;margin-top:8px" data-cclr>إلغاء المخصّص والعودة للنظام العام</button>':''}`};
+const needM=id=>S.members.find(m=>m.id==id);
+document.addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b)return;const D=b.dataset;
+ if(b.id==='out'){S.session=null;LR='player'}
+ else if(D.role)LR=D.role;
+ else if(D.login!=null){const pin=$('#lc').value.trim();
+  if(LR==='admin'){if(pin!==S.adminPin){$('#le').textContent='الرمز غير صحيح';return}S.session={role:'admin'};S.tab='home'}
+  else{const ph=$('#lp').value.replace(/\s/g,''),m=S.members.find(x=>x.phone.replace(/\s/g,'')===ph&&x.pin===pin);if(!m){$('#le').textContent='رقم الهاتف أو الرمز غير صحيح';return}S.session={role:'player',id:m.id};S.tab='me'}}
+ else if(D.tab){S.tab=D.tab;window.scrollTo(0,0)}
+ else if(D.f!=null)S.filter=D.f;
+ else if(D.day!=null)S.day=+D.day;
+ else if(D.ex!=null)toggle(doneKey('w'+S.day,D.ex));
+ else if(D.meal!=null)toggle(doneKey('n'+(me().cn?'x':me().nu),D.meal));
+ else if(D.renew){const m=needM(D.renew);pay(m,m.plan);toast('تم التجديد وتسجيل الدفعة')}
+ else if(D.att){const m=needM(D.att);checkIn(m)}
+ else if(D.meIn!=null)checkIn(me());
+ else if(D.del!=null){if(b.dataset.arm){S.members=S.members.filter(m=>m.id!=D.del)}else{b.dataset.arm=1;b.textContent='تأكيد الحذف؟';setTimeout(()=>{b.dataset.arm='';b.textContent='حذف'},3000);return}}
+ else if(D.add!=null){$('#fn').value='';$('#fp').value='';$('#fe').textContent='';$('#fl').innerHTML=Object.entries(S.plans).map(([k,p])=>`<option value="${k}">${p.n} — ${p.p}${CUR}</option>`).join('');$('#dlg').showModal();$('#fn').focus();return}
+ else if(D.apost!=null){const t=$('#at').value.trim();if(!t){toast('اكتب نص الإعلان أولاً');return}S.ann.push({id:S.aid++,d:today(),txt:t});toast('تم نشر الإعلان')}
+ else if(D.adel){S.ann=S.ann.filter(a=>a.id!=D.adel)}
+ else if(D.saveplans!=null){for(const k in S.plans){const v=+$('#pr'+k).value;if(!(v>0)){toast('أدخل أسعاراً صحيحة');return}S.plans[k].p=v}toast('تم حفظ الأسعار')}
+ else if(D.savepin!=null){const v=$('#np').value.trim();if(!/^\d{4,8}$/.test(v)){toast('الرمز: 4 إلى 8 أرقام');return}S.adminPin=v;toast('تم تغيير الرمز')}
+ else if(D.wadd!=null){const v=parseFloat($('#wv').value);if(!(v>=20&&v<=300)){$('#we').textContent='أدخل وزناً صحيحاً بين 20 و 300 كغ';return}const m=me();m.wt=m.wt.filter(x=>x.d!==today());m.wt.push({d:today(),v});toast('تم حفظ الوزن')}
+ else if(D.ced){const m=needM(D.ced),b0=m.cn||NU[m.nu];E={id:m.id,k:b0.k,P:b0.P,C:b0.C,F:b0.F,m:b0.m.map(x=>x.slice())};$('#cwho').textContent='اللاعب: '+m.name;edDraw();$('#dlg2').showModal();return}
+ else if(D.crow!=null){edRead();E.m.push(['','',0]);edDraw();return}
+ else if(D.crm!=null){edRead();E.m.splice(+D.crm,1);edDraw();return}
+ else if(D.cclose!=null){$('#dlg2').close();return}
+ else if(D.cclr!=null){const m=needM(E.id);delete m.cn;$('#dlg2').close();toast('عاد اللاعب للنظام العام')}
+ else if(D.csave!=null){edRead();const ok=E.m.length&&E.m.every(x=>x[1].trim());
+  if(!(E.k>=800)){edDraw('السعرات المستهدفة 800 على الأقل');return}
+  if(!ok){edDraw(E.m.length?'اكتب وصفاً لكل وجبة':'أضف وجبة واحدة على الأقل');return}
+  const m=needM(E.id);m.cn={n:'مخصّص',k:E.k,P:E.P,C:E.C,F:E.F,m:E.m.map(x=>[x[0].trim(),x[1].trim(),x[2]])};
+  if(m.ck[today()])m.ck[today()]=m.ck[today()].filter(k=>k[0]!=='n'||k[1]!=='x');
+  $('#dlg2').close();toast('تم حفظ النظام المخصّص للاعب')}
+ else if(D.reset!=null){S=seed()}
+ else if(b.id==='cancel'){$('#dlg').close();return}
+ else if(b.id==='save'){const n=$('#fn').value.trim(),ph=$('#fp').value.trim();
+  if(!n){$('#fe').textContent='الرجاء كتابة اسم العضو';$('#fn').focus();return}
+  if(!/^[0-9+\s-]{7,15}$/.test(ph)){$('#fe').textContent='رقم الهاتف غير صحيح (أرقام فقط)';$('#fp').focus();return}
+  const m={id:S.nid++,name:n,phone:ph,plan:$('#fl').value,end:today(),pin:ph.replace(/\D/g,'').slice(-4),nu:'f',att:[],wt:[],ck:{}};pay(m,m.plan);S.members.push(m);$('#dlg').close();toast('تمت الإضافة. رمز دخوله: '+m.pin)}
+ else return;
+ render();
+});
+document.addEventListener('change',e=>{if(e.target.dataset.nuset){needM(e.target.dataset.nuset).nu=e.target.value;toast('تم تحديث النظام الغذائي');save()}});
+document.addEventListener('input',e=>{if(e.target.id==='sq'){S.q=e.target.value;render()}});
+render();
+</script>
+</body>
+</html>
